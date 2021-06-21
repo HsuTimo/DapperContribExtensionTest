@@ -17,7 +17,6 @@ namespace DapperExtensionsMVC.Repository
 
         public async Task CreateAsync<TModel>(TModel obj) where TModel : class
         {
-            //The table name in the database must be the name of the model + s. Example: Person class will need a Persons table in the database
             using (var connection = _connectionHelper.GetConnection())
             {
                 connection.Open();
