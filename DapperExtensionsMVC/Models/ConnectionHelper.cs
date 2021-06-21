@@ -11,14 +11,14 @@ namespace DapperExtensionsMVC.Models
 {
     public class ConnectionHelper:IConnectionHelper
     {
-        private readonly IConfiguration _configuration;
-        public ConnectionHelper(IConfiguration configuration)
+        private readonly string _connectionString;
+        public ConnectionHelper(string connectionString)
         {
-            _configuration = configuration;
+            _connectionString = connectionString;
         }
-        public IDbConnection GetConnection(string name)
+        public IDbConnection GetConnection()
         {
-            return new SqlConnection(_configuration.GetConnectionString(name));
+            return new SqlConnection(_connectionString);
         }
     }
 }

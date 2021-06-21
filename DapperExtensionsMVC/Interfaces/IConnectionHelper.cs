@@ -8,6 +8,6 @@ namespace DapperExtensionsMVC.Interfaces
 {
     public interface IConnectionHelper
     {
-        IDbConnection GetConnection(string name);
+        IDbConnection GetConnection();
     }
 }

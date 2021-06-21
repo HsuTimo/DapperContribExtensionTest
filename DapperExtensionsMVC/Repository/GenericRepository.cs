@@ -17,7 +17,8 @@ namespace DapperExtensionsMVC.Repository
 
         public void Create<TModel>(TModel obj) where TModel : class
         {
-            using (var connection = _connectionHelper.GetConnection("DefaultConnection"))
+            //The table name in the database will be the name of the model + s. Example: Person class will need a Persons table in the database
+            using (var connection = _connectionHelper.GetConnection())
             {
                 connection.Open();
                 connection.Insert(obj);
@@ -26,7 +27,7 @@ namespace DapperExtensionsMVC.Repository
 
         public void Delete<TModel>(TModel obj) where TModel : class
         {
-            using (var connection = _connectionHelper.GetConnection("DefaultConnection"))
+            using (var connection = _connectionHelper.GetConnection())
             {
                 connection.Open();
                 connection.Delete(obj);
@@ -35,7 +36,7 @@ namespace DapperExtensionsMVC.Repository
 
         public List<TModel> GetAll<TModel>() where TModel : class
         {
-            using (var connection = _connectionHelper.GetConnection("DefaultConnection"))
+            using (var connection = _connectionHelper.GetConnection())
             {
                 connection.Open();
                 var list = connection.GetAll<TModel>().ToList();
@@ -45,7 +46,7 @@ namespace DapperExtensionsMVC.Repository
 
         public TModel GetById<TModel>(int id) where TModel : class
         {
-            using (var connection = _connectionHelper.GetConnection("DefaultConnection"))
+            using (var connection = _connectionHelper.GetConnection())
             {
                 connection.Open();
                 var obj = connection.Get<TModel>(id);
@@ -55,7 +56,7 @@ namespace DapperExtensionsMVC.Repository
 
         public void Update<TModel>(TModel obj) where TModel : class
         {
-            using (var connection = _connectionHelper.GetConnection("DefaultConnection"))
+            using (var connection = _connectionHelper.GetConnection())
             {
                 connection.Open();
                 connection.Update(obj);

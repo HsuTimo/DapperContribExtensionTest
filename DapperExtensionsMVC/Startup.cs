@@ -27,7 +27,7 @@ namespace DapperExtensionsMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<IConnectionHelper, ConnectionHelper>();
+            services.AddTransient<IConnectionHelper>(c => new ConnectionHelper(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IRepository, GenericRepository>();
         }
 
