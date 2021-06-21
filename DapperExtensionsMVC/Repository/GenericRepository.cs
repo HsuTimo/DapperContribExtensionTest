@@ -15,51 +15,51 @@ namespace DapperExtensionsMVC.Repository
             _connectionHelper = connectionHelper;
         }
 
-        public void Create<TModel>(TModel obj) where TModel : class
+        public async Task CreateAsync<TModel>(TModel obj) where TModel : class
         {
-            //The table name in the database will be the name of the model + s. Example: Person class will need a Persons table in the database
+            //The table name in the database must be the name of the model + s. Example: Person class will need a Persons table in the database
             using (var connection = _connectionHelper.GetConnection())
             {
                 connection.Open();
-                connection.Insert(obj);
+                await connection.InsertAsync(obj);
             }
         }
 
-        public void Delete<TModel>(TModel obj) where TModel : class
+        public async Task DeleteAsync<TModel>(TModel obj) where TModel : class
         {
             using (var connection = _connectionHelper.GetConnection())
             {
                 connection.Open();
-                connection.Delete(obj);
+                await connection.DeleteAsync(obj);
             }
         }
 
-        public List<TModel> GetAll<TModel>() where TModel : class
+        public async Task<List<TModel>> GetAllAsync<TModel>() where TModel : class
         {
             using (var connection = _connectionHelper.GetConnection())
             {
                 connection.Open();
-                var list = connection.GetAll<TModel>().ToList();
-                return list;
+                var list = await connection.GetAllAsync<TModel>();
+                return list.ToList();
             }
         }
 
-        public TModel GetById<TModel>(int id) where TModel : class
+        public async Task<TModel> GetByIdAsync<TModel>(int id) where TModel : class
         {
             using (var connection = _connectionHelper.GetConnection())
             {
                 connection.Open();
-                var obj = connection.Get<TModel>(id);
+                var obj = await connection.GetAsync<TModel>(id);
                 return obj;
             }
         }
 
-        public void Update<TModel>(TModel obj) where TModel : class
+        public async Task UpdateAsync<TModel>(TModel obj) where TModel : class
         {
             using (var connection = _connectionHelper.GetConnection())
             {
                 connection.Open();
-                connection.Update(obj);
+                await connection.UpdateAsync(obj);
             }
         }
     }

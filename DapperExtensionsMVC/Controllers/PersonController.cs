@@ -15,9 +15,9 @@ namespace DapperExtensionsMVC.Controllers
         {
             _repository = repository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _repository.GetAll<Person>(); 
+            var list = await _repository.GetAllAsync<Person>(); 
             return View(list);
         }
         [HttpGet]
@@ -26,39 +26,39 @@ namespace DapperExtensionsMVC.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Person person)
+        public async Task<IActionResult> Create(Person person)
         {
-            _repository.Create<Person>(person);
+            await _repository.CreateAsync<Person>(person);
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
-        public IActionResult Update(int id)
+        public async Task<IActionResult> Update(int id)
         {
-            var person = _repository.GetById<Person>(id);
+            var person = await _repository.GetByIdAsync<Person>(id);
             return View(person);
         }
         [HttpPost]
-        public IActionResult Update(Person newPerson)
+        public async Task<IActionResult> Update(Person newPerson)
         {
-            _repository.Update<Person>(newPerson);
+            await _repository.UpdateAsync<Person>(newPerson);
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var person = _repository.GetById<Person>(id);
+            var person = await _repository.GetByIdAsync<Person>(id);
             return View(person);
         }
         [HttpPost]
-        public IActionResult Delete(Person toDeletePerson)
+        public async Task<IActionResult> Delete(Person toDeletePerson)
         {
-            _repository.Delete<Person>(toDeletePerson);
+            await _repository.DeleteAsync<Person>(toDeletePerson);
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var person = _repository.GetById<Person>(id);
+            var person =await _repository.GetByIdAsync<Person>(id);
             return View(person);
         }
     }

@@ -7,10 +7,10 @@ namespace DapperExtensionsMVC.Interfaces
 {
     public interface IRepository
     {
-        List<TModel> GetAll<TModel>() where TModel : class;
-        TModel GetById<TModel>(int id) where TModel : class;
-        void Create<TModel>(TModel obj) where TModel : class;
-        void Delete<TModel>(TModel obj) where TModel : class;
-        void Update<TModel>(TModel obj) where TModel : class;
+        Task<List<TModel>> GetAllAsync<TModel>() where TModel : class;
+        Task<TModel> GetByIdAsync<TModel>(int id) where TModel : class;
+        Task CreateAsync<TModel>(TModel obj) where TModel : class;
+        Task DeleteAsync<TModel>(TModel obj) where TModel : class;
+        Task UpdateAsync<TModel>(TModel obj) where TModel : class;
     }
 }
